@@ -1,8 +1,11 @@
 from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+import os
+from dotenv import load_dotenv
 
-TOKEN: Final = '6509296492:AAH_i5pMrMbhaIjaLzRtFdUVf97fl5cSa2M'
+load_dotenv()
+print(os.getenv("TOKEN"))
 BOT_USERNAME: Final = '@Muc_hai_bot'
 
 #Commands
@@ -52,7 +55,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 if __name__ == '__main__':
 
     print('Starting bot .....')
-    app = Application.builder().token(TOKEN).build()
+    app = Application.builder().token(os.getenv('TOKEN')).build()
     
     app.add_handler(CommandHandler('start', start_command))
     app.add_handler(CommandHandler('help', help_command))
